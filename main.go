@@ -5,9 +5,7 @@ import (
 	"fmt"
 	"gohub/bootstrap"
 	btsConfig "gohub/config"
-	"gohub/pkg/captcha"
 	"gohub/pkg/config"
-	"gohub/pkg/logger"
 
 	"github.com/gin-gonic/gin"
 )
@@ -43,9 +41,6 @@ func main() {
 
     // 初始化路由绑定
     bootstrap.SetupRoute(router)
-
-    logger.Dump(captcha.NewCaptcha().VerifyCaptcha("1g2ZZCQ7fvHnFdnZ2V1j", "865973"), "正确的答案")
-    logger.Dump(captcha.NewCaptcha().VerifyCaptcha("1g2ZZCQ7fvHnFdnZ2V1j", "000000"), "错误的答案")
 
     // 运行服务
     err := router.Run(":" + config.Get("app.port"))
